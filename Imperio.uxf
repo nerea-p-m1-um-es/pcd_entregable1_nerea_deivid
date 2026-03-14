@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>15</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1140</x>
+      <y>555</y>
+      <w>315</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>UNIDAD COMBATE
+--
++ id_combate: str
++ clave_cifrada: int
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>555</y>
+      <w>315</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>NAVE
+--
++ nombre: str
++ lista_repuestos: list Repuesto
+--
++ solicitar_repuesto(nombre: str)
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>975</y>
+      <w>315</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>NAVE ESTELAR
+--
++ tripulacion: int
++ pasaje: int
++ clase: str
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>105</x>
+      <y>975</y>
+      <w>315</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>ESTACION ESPACIAL
+--
++ tripulacion: int
++ pasaje: int
++ ubicacion: UBICACION
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>975</y>
+      <w>315</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>CAZA ESTELAR
+--
++ dotacion: int
+
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>825</y>
+      <w>315</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>825</y>
+      <w>45</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>825</y>
+      <w>270</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1635</x>
+      <y>105</y>
+      <w>315</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>REPUESTO
+--
++ nombre : str
++ proveedor : str
+- cantidad : int
++ precio : float
+--
++ get_cantidad() : int
++ set_cantidad(nueva_cantidad: int)
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1635</x>
+      <y>405</y>
+      <w>315</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>UBICACION
+--
+ENDOR
+CUMULO_RAIMOS
+NEBULOSA_KALIIDA
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1140</x>
+      <y>105</y>
+      <w>315</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>ALMACEN
+--
++ nombre: str
++ localizacion: str
++ lista_repuestos: list Repuesto
+--
++ buscar_repuesto(nombre: str) : Repuesto
++ actualizar_stock(repuesto: Repuesto, cant: int)
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1635</x>
+      <y>975</y>
+      <w>315</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>CLASE_NAVE
+--
+EJECUTOR
+ECLIPSE
+SOBERANO
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>405</x>
+      <y>105</y>
+      <w>405</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>USUARIO
+--
++ rol : ROL_USUARIO
+--
++ consultar_repuesto(almacen: Almacen)
++ adquirir_repuesto(almacen: Almacen)
++ mantener_catalogo(almacen: Almacen)
++ actualizar_stock(almacen: Almacen)
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1635</x>
+      <y>690</y>
+      <w>315</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>ROL_USUARIO
+--
+COMANDANTE
+OPERARIO
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1440</x>
+      <y>225</y>
+      <w>225</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>375</y>
+      <w>75</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>795</x>
+      <y>225</y>
+      <w>375</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=0..*
+m2=1..*</panel_attributes>
+    <additional_attributes>10.0;10.0;230.0;10.0</additional_attributes>
+  </element>
+</diagram>
