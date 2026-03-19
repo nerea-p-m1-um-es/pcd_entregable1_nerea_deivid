@@ -38,8 +38,8 @@ class Almacen:
         repuesto_encontrado = self.buscar_repuesto(repuesto)
 
         if repuesto_encontrado != None and repuesto_encontrado.get_cantidad() >= cantidad:
-            cant = repuesto_encontrado.get_cantidad() - cantidad
-            repuesto_encontrado.set_cantidad(cant)
+            new_cant = repuesto_encontrado.get_cantidad() - cantidad
+            repuesto_encontrado.set_cantidad(new_cant)
 
             return True
 
@@ -52,14 +52,14 @@ class Repuesto:
     def __init__(self, nombre, proveedor, cantidad, precio):
         self.nombre=nombre
         self.proveedor=proveedor
-        self._cantidad=cantidad
+        self.__cantidad=cantidad
         self.precio=precio
 
     def get_cantidad(self):
-        return self._cantidad
+        return self.__cantidad
     
     def set_cantidad(self, nueva_cantidad):
-        self._cantidad = nueva_cantidad
+        self.__cantidad = nueva_cantidad
 
 
 class Sistema_miimperio:
@@ -73,36 +73,53 @@ class Usuario:
     def __init__(self, rol):
         self.rol=rol
 
-##Cantidad
-
     def verificar_stock_repuesto(self, repuesto, almacen, cantidad):
 
         if self.rol == Rol_usuario.COMANDANTE:
             rep_disponible = almacen.buscar_repuesto(repuesto)
 
-            if rep_disponible != None:
+            if rep_disponible != None and rep_disponible.get_cantidad() >= cantidad:
                 print(f'El repuesto {repuesto} está disponible en el almacen {almacen}')
-
+                return rep_disponible
             else:
                 print(f'El repuesto {repuesto} no está disponible en el almacen {almacen}')
-
-            return rep_disponible
+                return None
         
         else:
             print('Acción restringida para Operarios')
+            return None
     
     def adquirir_repuesto(self, repuesto, almacen, nave, cantidad):
 
         if self.rol == Rol_usuario.COMANDANTE:
 
             if self.verificar_stock_repuesto(repuesto, almacen) != None:
-
-                if almacen.actualizar_stock(self, repuesto, cantidad):
-                    nave._agregar_repuesto(repuesto)
+                nave._agregar_repuesto(repuesto, cantidad)
+                print(f'Se ha adquirido {cantidad} unidades de {repuesto} con exito.')
 
         else:
             print('Acción restringida para Operarios')    
 
+
+    def mantener_catalogo(self, almacen, repuesto):
+            """Permite a los operarios añadir nuevos tipos de piezas al almacén."""
+            if self.rol == Rol_usuario.OPERARIO:
+                almacen.agregar_repuesto(repuesto)
+                print(f"Operario {self.nombre} ha añadido {repuesto.nombre} al catálogo de {almacen.nombre}.")
+            else:
+                print("Acción denegada: Solo los operarios pueden mantener el catálogo.")
+
+    def actualizar_stock(self, almacen, nombre_repuesto, nueva_cantidad):
+            """Permite a los operarios reponer o ajustar el stock físico."""
+            if self.rol == Rol_usuario.OPERARIO:
+                repuesto = almacen.buscar_repuesto(nombre_repuesto)
+                if repuesto:
+                    repuesto.set_cantidad(nueva_cantidad)
+                    print(f"Stock de {nombre_repuesto} actualizado a {nueva_cantidad} por {self.nombre}.")
+                else:
+                    print(f"No se encontró el repuesto {nombre_repuesto} para actualizar.")
+            else:
+                print("Acción denegada: Solo los operarios pueden actualizar stocks.")
 
 class Unidad_combate:
     def __init__(self, id_combate, clave_cifrada):
